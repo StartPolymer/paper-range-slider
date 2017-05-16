@@ -382,7 +382,7 @@ See README.md for further details.
             // set the padding for the parent container
             this._setPadding();
 
-            // setup listeners for updating everything whenever a knob is affected 
+            // setup listeners for updating everything whenever a knob is affected
             var this_ = this;
 
             this.$$("#sliderMin").addEventListener('immediate-value-change', function(customEvent) {
@@ -391,7 +391,7 @@ See README.md for further details.
                 this_.$.sliderMin._expandKnob();
                 this_.$.sliderMax._expandKnob();
             });
-            
+
             this.$$("#sliderMax").addEventListener('immediate-value-change', function(customEvent) {
                 // console.log('immed-change..',this.immediateValue,this_.valueMax)
                 this_._setValueMinMax(this_._getValuesMinMax(null,this.immediateValue));
@@ -404,7 +404,7 @@ See README.md for further details.
                     this_.$.sliderMin._expandKnob();
                 }
             });
-        
+
             this.$$("#sliderMax").addEventListener('change', function(customEvent) {
                 // console.log('final-change..',this.immediateValue,this_.valueMax)
                 this_._setValueMinMax(this_._getValuesMinMax(null,this.immediateValue));
@@ -546,7 +546,7 @@ See README.md for further details.
         _updateSliderKnobMinMax: function() {
             var _this = this;
             var nTries = 0;
-            
+
             function try_updateSliderKnobMinMax() {
                 var width = _this.$$("#sliderMax").getEle('#sliderContainer').offsetWidth;
                 if(width < 0.0001) {
@@ -567,7 +567,7 @@ See README.md for further details.
                 return;
             }
             try_updateSliderKnobMinMax();
-            
+
             return;
         },
 
@@ -575,7 +575,7 @@ See README.md for further details.
         // spans the distance between the knobs
         _backDivOnTrack: function(event) {
           event.stopPropagation();
-          
+
           switch (event.detail.state) {
             case 'start':
               this._backDivTrackStart(event);
@@ -626,7 +626,7 @@ See README.md for further details.
 
             return;
         },
-        
+
         // place-holder function for at the end of the dragging event, so the following
         _backDivTrackEnd: function() { return; },
 
@@ -652,7 +652,7 @@ See README.md for further details.
         //      show/hide pins (if defined) for one knob, when the other knob is pressed
         _sliderMinDown: function() {
             this.$$("#sliderMax")._expandKnob();
-            
+
             return;
         },
 
@@ -670,7 +670,7 @@ See README.md for further details.
         _sliderMinUp: function() {
             if(this.alwaysShowPin) this.$$("#sliderMin")._expandKnob();
             else                   this.$$("#sliderMax")._resetKnob();
-            
+
             return;
         },
 
@@ -680,7 +680,7 @@ See README.md for further details.
                 this.$$("#sliderMin")._resetKnob();
                 if(this.singleSlider) this.$$("#sliderMax")._resetKnob();
             }
-            
+
             return;
         },
 
@@ -701,7 +701,7 @@ See README.md for further details.
                 else                  { this.setValues(valueMin,valueMax);                      }
                 return;
             }
-            
+
             var value = this._getEventValue(event);
             if(value > this.valueMin && value < this.valueMax) {
                 if(this.tapValueReduce) {
@@ -729,7 +729,7 @@ See README.md for further details.
             this._xWidth = this.$$("#sliderMin").getEle('#sliderBar').offsetWidth;
             this._x0_Min = this.$$("#sliderMin").ratio * this._xWidth;
             this._x0_Max = this.$$("#sliderMax").ratio * this._xWidth;
-            
+
             return;
         },
 
@@ -761,7 +761,7 @@ See README.md for further details.
          * @method init
          */
         init: function() {
-            // 
+            //
             this.setSingleSlider(this.singleSlider);
             this.setDisabled(this.disabled);
 
@@ -836,7 +836,7 @@ See README.md for further details.
                 this.async(function() { this.fire('updateValues'); });
             }
             return;
-        },        
+        },
 
         /**
          * set the minimal value (lower range) of the slider
@@ -963,7 +963,7 @@ See README.md for further details.
                 this.$$("#sliderMin").style.display           = 'none';
                 this.$$("#sliderKnobMin").style.pointerEvents = 'none';
                 this.$$("#sliderKnobMax").style.pointerEvents = 'none';
-                
+
                 this.$$("#backDiv").style.cursor                         = 'default';
                 this.$$("#sliderKnobMin").style.cursor                   = 'default';
                 this.$$("#sliderKnobMax").style.cursor                   = 'default';
@@ -977,8 +977,8 @@ See README.md for further details.
                 this.$$("#sliderMin").style.display           = '';
                 this.$$("#sliderKnobMin").style.pointerEvents = 'auto';
                 this.$$("#sliderKnobMax").style.pointerEvents = 'auto';
-                
-                this.$$("#backDiv").style.cursor                         = 'ew-resize';
+
+                // this.$$("#backDiv").style.cursor                         = 'ew-resize';
                 this.$$("#sliderKnobMin").style.cursor                   = 'col-resize';
                 this.$$("#sliderKnobMax").style.cursor                   = 'col-resize';
                 this.$$("#sliderMax").getEle('#sliderKnob').style.cursor = 'col-resize';
